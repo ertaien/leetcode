@@ -17,10 +17,12 @@ List<String> fullJustify(List<String> words, int maxWidth) {
   });
 
   final result = firstStepResult.map((str) {
-    if (str.length < maxWidth) {
-      final List word = str.trim().split(' ');
-      final int spaceCount = maxWidth - word.join().length;
-      int wordCount = word.length;
+    final List texLine = str.trim().split(' ');
+
+    if (texLine.join().length < maxWidth) {
+      final int spaceCount = maxWidth - texLine.join().length;
+      int wordCount = texLine.length;
+      final lastWordIndex = texLine.length - 1;
 
       if (wordCount > 1) {
         wordCount -= 1;
@@ -29,23 +31,27 @@ List<String> fullJustify(List<String> words, int maxWidth) {
       print("Space count: $spaceCount, Word count: $wordCount");
 
       if (wordCount == 1) {
-        return word.join() + List.generate(spaceCount, (index) => " ").join();
+        return texLine.join() +
+            List.generate(spaceCount, (index) => " ").join();
       } else {
-        final int spaceForEveryWord = spaceCount ~/ wordCount;
+        final int leftSpaceCount = spaceCount % wordCount;
+        int spaceForEveryWord = (spaceCount - leftSpaceCount) ~/ wordCount;
 
-        print("spaceForEveryWord: $spaceForEveryWord");
-
-        return word
+        return texLine
             .asMap()
-            .map((key, value) {
-              if (key != wordCount) {
+            .map((idx, value) {
+              if (idx != lastWordIndex) {
+                if (idx == 0) {
+                  spaceForEveryWord += leftSpaceCount;
+                }
+
                 final data = value +
                     List.generate(spaceForEveryWord, (index) => " ").join();
 
-                return MapEntry(key, data);
+                return MapEntry(idx, data);
               }
 
-              return MapEntry(key, value);
+              return MapEntry(idx, value);
             })
             .values
             .join();
