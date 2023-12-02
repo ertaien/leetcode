@@ -1,4 +1,5 @@
 List<String> fullJustify(List<String> words, int maxWidth) {
+
   final List<String> firstStepResult = [];
   String currentWords = "";
 
