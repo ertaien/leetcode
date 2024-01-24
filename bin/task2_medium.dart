@@ -4,7 +4,6 @@ class Solution {
       final numCount = nums.where((e) => e == n).length;
 
       if (numCount > 2) {
-        final removeCount = numCount - 2;
         final firstIndex = nums.indexOf(n);
         final lastIndex = nums.lastIndexOf(n);
 
@@ -13,8 +12,6 @@ class Solution {
         nums.removeRange(firstIndex + 2, lastIndex);
       }
     }
-
-    print(nums);
 
     return nums.length;
   }
