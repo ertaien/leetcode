@@ -8,6 +8,10 @@ class Solution {
     final matches = {};
     bool result = true;
 
+    if (patterns.length != words.length) {
+      return false;
+    }
+
     patterns.asMap().forEach((idx, pattern) {
       if (matches.containsKey(pattern)) {
         final patternWord = matches[pattern];
@@ -33,6 +37,5 @@ void main() {
 
   print(solution.wordPattern("abba", "dog cat cat dog"));
   print(solution.wordPattern("abbi", "dog cat cat dog"));
-  print(solution.wordPattern("aiai", "ada camino ada camino"));
-  print(solution.wordPattern("aiai", "ada camino ada munix"));
+  print(solution.wordPattern("aaa", "aa aa aa aa"));
 }
