@@ -31,8 +31,7 @@ List<String> fullJustify(List<String> words, int maxWidth) {
       print("Space count: $spaceCount, Word count: $wordCount");
 
       if (wordCount == 1) {
-        return texLine.join() +
-            List.generate(spaceCount, (index) => " ").join();
+        return texLine.join() + List.generate(spaceCount, (index) => " ").join();
       } else {
         final int leftSpaceCount = spaceCount % wordCount;
         int spaceForEveryWord = (spaceCount - leftSpaceCount) ~/ wordCount;
